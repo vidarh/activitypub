@@ -1,6 +1,8 @@
 
 # https://www.w3.org/TR/activitystreams-vocabulary/
 
+require_relative 'base'
+
 module ActivityPub
 
   class Link < Base
