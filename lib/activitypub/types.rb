@@ -124,6 +124,49 @@ module ActivityPub
     ap_attr :oneOf, :anyOf, :closed
   end
 
+  # ## Actor Types
+
+  # NOTE: *NOT* an ActivityPub object type
+  # FIXME: Should probably not be possible to instantiate
+  # directly.
+  #
+  class Actor < Object
+    # Per https://www.w3.org/TR/activitypub/#actors
+    # Section 4.1
+
+    # MUST have:
+    ap_attr :inbox, :outbox
+
+    # SHOULD have:
+    ap_attr :following, :followers
+    
+    # MAY have:
+    ap_attr :liked, :streams, :preferredUsername,
+      :endpoints
+
+
+    # Per https://docs-p.joinmastodon.org/spec/activitypub/#extensions
+    # These are extensions used by Mastodon for Actor types
+    ap_attr :publicKey, :featured, :featuredTags,
+      :discoverable, :suspended
+  end
+
+  # FIXME: Add "toot:Emoji
+  # FIXME: Add PropertyValue
+  
+  class Application < Actor
+  end
+
+  class Group < Actor
+  end
+
+  class Person < Actor
+  end
+
+  class Service < Actor
+  end
+
+  
   # ## Object types
 
   class Relationship < Object
@@ -140,6 +183,10 @@ module ActivityPub
   end
 
   class Image < Document
+    
+    # Mastodon extension per
+    # https://docs-p.joinmastodon.org/spec/activitypub/#extensions
+    ap_attr :focalPoint, :blurhash
   end
 
   class Video < Document
