@@ -1,0 +1,10 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "likes.json",
+  "type": "OrderedCollection",
+  "totalItems": 154,
+  "orderedItems": [
+    "https://mastodon.ml/users/nx01/statuses/109070614320065915",
+    "https://mstdn.social/users/stux/statuses/109242531137501096"
+  ]
+}

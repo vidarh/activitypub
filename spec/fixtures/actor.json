@@ -1,0 +1,163 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1",
+    {
+      "manuallyApprovesFollowers": "as:manuallyApprovesFollowers",
+      "toot": "http://joinmastodon.org/ns#",
+      "featured": {
+        "@id": "toot:featured",
+        "@type": "@id"
+      },
+      "featuredTags": {
+        "@id": "toot:featuredTags",
+        "@type": "@id"
+      },
+      "alsoKnownAs": {
+        "@id": "as:alsoKnownAs",
+        "@type": "@id"
+      },
+      "movedTo": {
+        "@id": "as:movedTo",
+        "@type": "@id"
+      },
+      "schema": "http://schema.org#",
+      "PropertyValue": "schema:PropertyValue",
+      "value": "schema:value",
+      "discoverable": "toot:discoverable",
+      "Device": "toot:Device",
+      "Ed25519Signature": "toot:Ed25519Signature",
+      "Ed25519Key": "toot:Ed25519Key",
+      "Curve25519Key": "toot:Curve25519Key",
+      "EncryptedMessage": "toot:EncryptedMessage",
+      "publicKeyBase64": "toot:publicKeyBase64",
+      "deviceId": "toot:deviceId",
+      "claim": {
+        "@type": "@id",
+        "@id": "toot:claim"
+      },
+      "fingerprintKey": {
+        "@type": "@id",
+        "@id": "toot:fingerprintKey"
+      },
+      "identityKey": {
+        "@type": "@id",
+        "@id": "toot:identityKey"
+      },
+      "devices": {
+        "@type": "@id",
+        "@id": "toot:devices"
+      },
+      "messageFranking": "toot:messageFranking",
+      "messageType": "toot:messageType",
+      "cipherText": "toot:cipherText",
+      "suspended": "toot:suspended",
+      "Hashtag": "as:Hashtag",
+      "focalPoint": {
+        "@container": "@list",
+        "@id": "toot:focalPoint"
+      }
+    }
+  ],
+  "id": "https://mastodon.social/users/vidarh",
+  "type": "Person",
+  "following": "https://mastodon.social/users/vidarh/following",
+  "followers": "https://mastodon.social/users/vidarh/followers",
+  "inbox": "https://mastodon.social/users/vidarh/inbox",
+  "outbox": "outbox.json",
+  "featured": "https://mastodon.social/users/vidarh/collections/featured",
+  "featuredTags": "https://mastodon.social/users/vidarh/collections/tags",
+  "preferredUsername": "vidarh",
+  "name": "Vidar Hokstad / Galaxy Bound",
+  "summary": "<p>Techie, <a href=\"https://mastodon.social/tags/scifi\" class=\"mention hashtag\" rel=\"tag\">#<span>scifi</span></a> writer (galaxybound.com). Using this for now while I work on adding direct support for Mastodon/ActivityPub to a couple of my sites. Live in Croydon, London, UK. Originally from Norway. <a href=\"https://mastodon.social/tags/sf\" class=\"mention hashtag\" rel=\"tag\">#<span>sf</span></a> <a href=\"https://mastodon.social/tags/sff\" class=\"mention hashtag\" rel=\"tag\">#<span>sff</span></a> <a href=\"https://mastodon.social/tags/sciencefiction\" class=\"mention hashtag\" rel=\"tag\">#<span>sciencefiction</span></a> <a href=\"https://mastodon.social/tags/books\" class=\"mention hashtag\" rel=\"tag\">#<span>books</span></a> <a href=\"https://mastodon.social/tags/author\" class=\"mention hashtag\" rel=\"tag\">#<span>author</span></a> <a href=\"https://mastodon.social/tags/science\" class=\"mention hashtag\" rel=\"tag\">#<span>science</span></a> <a href=\"https://mastodon.social/tags/space\" class=\"mention hashtag\" rel=\"tag\">#<span>space</span></a></p>",
+  "url": "https://mastodon.social/@vidarh",
+  "manuallyApprovesFollowers": false,
+  "discoverable": true,
+  "published": "2018-12-04T00:00:00Z",
+  "devices": "https://mastodon.social/users/vidarh/collections/devices",
+  "movedTo": "https://m.galaxybound.com/users/vidar",
+  "publicKey": {
+    "id": "https://mastodon.social/users/vidarh#main-key",
+    "owner": "https://mastodon.social/users/vidarh",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2z9njUJq8stvhV6tCcM2\navMuf2lF8khrP3NC0zINtjGWJ+nTiKEaeXCdvBdKZtK4XVQmBuVwKF2LS4AZHOcU\nChLdzr+VeRvi/+d/1dZZzNrTy823VegZlJqtW8gEggTZ0F/p9rRamqpDp7imV12Q\nenGTgaxESG0vBwhawMYXp3KLImf1Qp9PebynQ8C/HFkDNJ+elS9WfjVWIrrLCs09\nw4lSYX4kkcQK0N/QIpJAOKsIJOEdJKLrdwYzAtRvfNNiV+s/EiRa9cmT+9NE7Qi6\ncD9uYr6JCGS/5rvMNm0xPblLWXgnG6WfpjXKgwJcMQFlqgjaU0khyXeM3w8mm4fR\noQIDAQAB\n-----END PUBLIC KEY-----\n"
+  },
+  "tag": [
+    {
+      "type": "Hashtag",
+      "href": "https://mastodon.social/tags/science",
+      "name": "#science"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://mastodon.social/tags/space",
+      "name": "#space"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://mastodon.social/tags/scifi",
+      "name": "#scifi"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://mastodon.social/tags/sf",
+      "name": "#sf"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://mastodon.social/tags/books",
+      "name": "#books"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://mastodon.social/tags/sff",
+      "name": "#sff"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://mastodon.social/tags/sciencefiction",
+      "name": "#sciencefiction"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://mastodon.social/tags/author",
+      "name": "#author"
+    }
+  ],
+  "attachment": [
+    {
+      "type": "PropertyValue",
+      "name": "Twitter",
+      "value": "<a href=\"https://twitter.com/BoundGalaxy\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">twitter.com/BoundGalaxy</span><span class=\"invisible\"></span></a>"
+    },
+    {
+      "type": "PropertyValue",
+      "name": "Site for my writing",
+      "value": "<a href=\"https://galaxybound.com/\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">galaxybound.com/</span><span class=\"invisible\"></span></a>"
+    },
+    {
+      "type": "PropertyValue",
+      "name": "Scifi blog",
+      "value": "<a href=\"https://galaxybound.com/blog\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">galaxybound.com/blog</span><span class=\"invisible\"></span></a>"
+    },
+    {
+      "type": "PropertyValue",
+      "name": "Personal blog (rarely updated)",
+      "value": "<a href=\"https://hokstad.com/blog\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">hokstad.com/blog</span><span class=\"invisible\"></span></a>"
+    }
+  ],
+  "endpoints": {
+    "sharedInbox": "https://mastodon.social/inbox"
+  },
+  "icon": {
+    "type": "Image",
+    "mediaType": "image/jpeg",
+    "url": "avatar.jpg"
+  },
+  "image": {
+    "type": "Image",
+    "mediaType": "image/jpeg",
+    "url": "header.jpeg"
+  },
+  "likes": "likes.json",
+  "bookmarks": "bookmarks.json"
+}
