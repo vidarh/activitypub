@@ -3,6 +3,18 @@
 *Very* early start on a set of classes to serialize/deserialize
 ActivityPub/ActivityStream objects.
 
+## Goals
+
+ * To provide a fairly *minimalist*, *barebones* set of classes to
+   work with ActivityPub objects *as used* by major Fediverse apps.
+ * Matching real-world use will be prioritized over strict adherence
+   to the specs - my use-cases require me to be able to handle documents
+   even if they have errors. But I want to be able to *produce* output
+   that prefers standards compliance where it doesn't sacrifice interop.
+ * Support extensions and namespace used by e.g. Mastodon and others.
+ * Be easy to extend/layer new functionality on top of for anything
+   that doesn't fit in this core.
+
 
 ## Installation
 
