@@ -1,11 +1,26 @@
 
-module ActivityPub
+require 'json'
 
+module ActivityPub
+  class Error < StandardError; end
+  
+  def self.from_json(json)
+    h = JSON.parse(json)
+    type = h&.dig("type")
+
+    raise Error, "'type' attribute is required" if !type
+    raise NameError, "'type' attribute with '::' is not allowed" if !type.index("::").nil?
+    
+    klass = ActivityPub.const_get(type)
+
+    klass ? klass.new : nil
+  end
+    
   # This is not part of ActivityPub, but provides basic mechanisms
   # for serialization and dezerialisation.
   #
   class Base
-    def _context = "https://www.w3.org/ns/activitystreams"
+    def _context = "https://www.w3.org/ns/activitystreams".freeze
     def _type = self.class.name.split("::").last
 
 
