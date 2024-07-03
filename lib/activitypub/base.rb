@@ -13,7 +13,15 @@ module ActivityPub
     
     klass = ActivityPub.const_get(type)
 
-    klass ? klass.new : nil
+    ob = klass ? klass.new : nil
+
+    if ob
+      klass.ap_attributes.each do |attr|
+        ob.instance_variable_set("@#{attr}", h.dig(attr.to_s))
+      end
+    end
+
+    ob
   end
     
   # This is not part of ActivityPub, but provides basic mechanisms

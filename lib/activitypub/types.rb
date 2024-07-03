@@ -10,6 +10,7 @@ module ActivityPub
   end
 
   class Object < Base
+    ap_attr :id
     ap_attr :attachment, :attributedTo, :audience, :content, :context,
       :name, :endTime, :generator, :icon, :image, :inReplyTo, :location,
       :preview, :published, :replies, :startTime, :summary, :tag, :updated,
@@ -161,6 +162,10 @@ module ActivityPub
   end
 
   class Person < Actor
+
+    # Mastodon extension per
+    # https://docs-p.joinmastodon.org/spec/activitypub/#extensions
+    ap_attr :likes, :bookmarks, :manuallyApprovesFollowers
   end
 
   class Service < Actor
