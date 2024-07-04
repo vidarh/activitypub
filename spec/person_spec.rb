@@ -14,6 +14,11 @@ RSpec.describe ActivityPub::Person do
       end
     end
 
+    it "has a complex @context (returned via #_context)" do
+      expect(subject._context).to include("https://www.w3.org/ns/activitystreams",
+        "https://w3id.org/security/v1")
+    end
+      
     it do
       is_expected.to have_attributes(
         :id => "https://mastodon.social/users/vidarh",
@@ -24,11 +29,23 @@ RSpec.describe ActivityPub::Person do
         :bookmarks => "bookmarks.json",
         :discoverable => true,
         :manuallyApprovesFollowers => false,
-        :summary => "my summary"
+        :summary => "my summary",
+
+        # FIXME
+        # Points to collections we'll make stricter later
+        # Note that currently, the types returned will reflect the input
+        # document. We do NOT validate the types of these, and so
+        # this reflects this fixture, which is typical for a Mastodon
+        # export, but is *not* guaranteed to be what you will get
+
+        :publicKey => a_kind_of(Hash),
+        :tag => a_kind_of(Array),
+        :attachment => a_kind_of(Array),
+        :endpoints => a_kind_of(Hash),
+        :icon => a_kind_of(Hash),
+        :image => a_kind_of(Hash),
       )
     end
-
-    it { expect(subject.tag).to be_kind_of(Array) }
   end
   
 end

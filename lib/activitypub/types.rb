@@ -31,6 +31,13 @@ module ActivityPub
   end
 
   class OrderedCollection < Collection
+    # "orderedItems" is not part of
+    # https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection,
+    # however it is part of at least some Mastodon exports, and so we include
+    # it here
+    #
+    # FIXME: Review/consider whether to marge orderedItems/items internally.
+    ap_attr :orderedItems
   end
 
   class CollectionPage < Collection
