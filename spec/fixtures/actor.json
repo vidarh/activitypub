@@ -89,38 +89,8 @@
     },
     {
       "type": "Hashtag",
-      "href": "https://mastodon.social/tags/space",
-      "name": "#space"
-    },
-    {
-      "type": "Hashtag",
       "href": "https://mastodon.social/tags/scifi",
       "name": "#scifi"
-    },
-    {
-      "type": "Hashtag",
-      "href": "https://mastodon.social/tags/sf",
-      "name": "#sf"
-    },
-    {
-      "type": "Hashtag",
-      "href": "https://mastodon.social/tags/books",
-      "name": "#books"
-    },
-    {
-      "type": "Hashtag",
-      "href": "https://mastodon.social/tags/sff",
-      "name": "#sff"
-    },
-    {
-      "type": "Hashtag",
-      "href": "https://mastodon.social/tags/sciencefiction",
-      "name": "#sciencefiction"
-    },
-    {
-      "type": "Hashtag",
-      "href": "https://mastodon.social/tags/author",
-      "name": "#author"
     }
   ],
   "attachment": [
@@ -133,16 +103,6 @@
       "type": "PropertyValue",
       "name": "Site for my writing",
       "value": "<a href=\"https://galaxybound.com/\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">galaxybound.com/</span><span class=\"invisible\"></span></a>"
-    },
-    {
-      "type": "PropertyValue",
-      "name": "Scifi blog",
-      "value": "<a href=\"https://galaxybound.com/blog\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">galaxybound.com/blog</span><span class=\"invisible\"></span></a>"
-    },
-    {
-      "type": "PropertyValue",
-      "name": "Personal blog (rarely updated)",
-      "value": "<a href=\"https://hokstad.com/blog\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\"><span class=\"invisible\">https://</span><span class=\"\">hokstad.com/blog</span><span class=\"invisible\"></span></a>"
     }
   ],
   "endpoints": {

@@ -225,4 +225,13 @@ module ActivityPub
   class Tombstone < Object
     ap_attr :formerType, :deleted
   end
+
+  # Mastodon extensions
+
+  class Hashtag < Link
+  end
+
+  class PropertyValue < Object
+    ap_attr :value
+  end
 end

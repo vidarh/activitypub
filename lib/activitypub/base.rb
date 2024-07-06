@@ -4,9 +4,13 @@ require 'json'
 
 module ActivityPub
   class Error < StandardError; end
+
   
   def self.from_json(json)
-    h = JSON.parse(json)
+    from_hash(JSON.parse(json))
+  end
+
+  def self.from_hash(h)
     type = h&.dig("type")
 
     raise Error, "'type' attribute is required" if !type
@@ -23,7 +27,16 @@ module ActivityPub
       ob.instance_variable_set("@_context", context) if context
       
       klass.ap_attributes.each do |attr|
-        ob.instance_variable_set("@#{attr}", h.dig(attr.to_s))
+        v = h.dig(attr.to_s)
+
+        if v.is_a?(Hash) && v["type"]
+          v = from_hash(v)
+        elsif v.is_a?(Array)
+          v = v.map do |av|
+            av.is_a?(Hash) && av["type"] ? from_hash(av) : av
+          end
+        end
+        ob.instance_variable_set("@#{attr}", v)
       end
     end
 
