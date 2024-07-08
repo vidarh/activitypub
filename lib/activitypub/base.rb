@@ -36,7 +36,7 @@ module ActivityPub
             av.is_a?(Hash) && av["type"] ? from_hash(av) : av
           end
         end
-        ob.instance_variable_set("@#{attr}", v)
+        ob.instance_variable_set("@#{attr}", v) if !v.nil?
       end
     end
 
