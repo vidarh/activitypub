@@ -36,6 +36,9 @@ module ActivityPub
             av.is_a?(Hash) && av["type"] ? from_hash(av) : av
           end
         end
+        if attr.to_s == "href" && v.is_a?(String)
+          v = ActivityPub::URI.new(v)
+        end
         ob.instance_variable_set("@#{attr}", v) if !v.nil?
       end
     end
@@ -51,6 +54,7 @@ module ActivityPub
     def _type = self.class.name.split("::").last
 
 
+    # FIXME: Allow specifying a type (e.g. URI)
     def self.ap_attr(*names)
       @ap_attributes ||= []
       @ap_attributes.concat(names)

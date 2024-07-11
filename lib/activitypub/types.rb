@@ -2,6 +2,7 @@
 # https://www.w3.org/TR/activitystreams-vocabulary/
 
 require_relative 'base'
+require_relative 'uri'
 
 module ActivityPub
 
