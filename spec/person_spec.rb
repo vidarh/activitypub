@@ -24,7 +24,7 @@ RSpec.describe ActivityPub::Person do
         :id => "https://mastodon.social/users/vidarh",
         :url => "https://mastodon.social/@vidarh",
         :preferredUsername => "vidarh",
-        :outbox => "outbox.json",
+        :outbox => a_kind_of(ActivityPub::URI),
         :likes => "likes.json",
         :bookmarks => "bookmarks.json",
         :discoverable => true,

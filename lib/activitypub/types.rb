@@ -7,19 +7,52 @@ require_relative 'uri'
 module ActivityPub
 
   class Link < Base
-    ap_attr :href, :rel, :mediaType, :name, :hreflang, :height, :width, :preview
+    ap_attr :href
+    ap_attr :rel
+    ap_attr :mediaType
+    ap_attr :name
+    ap_attr :hreflang
+    ap_attr :height
+    ap_attr :width
+    ap_attr :preview
   end
 
   class Object < Base
     ap_attr :id
-    ap_attr :attachment, :attributedTo, :audience, :content, :context,
-      :name, :endTime, :generator, :icon, :image, :inReplyTo, :location,
-      :preview, :published, :replies, :startTime, :summary, :tag, :updated,
-      :url, :to, :bto, :cc, :mediaType, :duration
+    ap_attr :attachment
+    ap_attr :attributedTo
+    ap_attr :audience
+    ap_attr :content
+    ap_attr :context
+    ap_attr :name
+    ap_attr :endTime
+    ap_attr :generator
+    ap_attr :icon
+    ap_attr :image
+    ap_attr :inReplyTo
+    ap_attr :location
+    ap_attr :preview
+    ap_attr :published
+    ap_attr :replies
+    ap_attr :startTime
+    ap_attr :summary
+    ap_attr :tag
+    ap_attr :updated
+    ap_attr :url
+    ap_attr :to
+    ap_attr :bto
+    ap_attr :cc
+    ap_attr :mediaType
+    ap_attr :duration
   end
 
   class Activity < Object
-    ap_attr :actor, :object, :target, :result, :origin, :instrument
+    ap_attr :actor
+    ap_attr :object
+    ap_attr :target
+    ap_attr :result
+    ap_attr :origin
+    ap_attr :instrument
   end
 
   # @FIXME
@@ -28,7 +61,11 @@ module ActivityPub
   end
 
   class Collection < Object
-    ap_attr :totalItems, :current, :first, :last, :items
+    ap_attr :totalItems
+    ap_attr :current
+    ap_attr :first
+    ap_attr :last
+    ap_attr :items
   end
 
   class OrderedCollection < Collection
@@ -42,7 +79,9 @@ module ActivityPub
   end
 
   class CollectionPage < Collection
-    ap_attr :partOf, :next, :prev
+    ap_attr :partOf
+    ap_attr :next
+    ap_attr :prev
   end
   
   class OrderedCollectionPage < CollectionPage
@@ -130,7 +169,9 @@ module ActivityPub
   end
 
   class Question < IntransitiveActivity
-    ap_attr :oneOf, :anyOf, :closed
+    ap_attr :oneOf
+    ap_attr :anyOf
+    ap_attr :closed
   end
 
   # ## Actor Types
@@ -144,20 +185,27 @@ module ActivityPub
     # Section 4.1
 
     # MUST have:
-    ap_attr :inbox, :outbox
+    ap_attr :inbox, URI
+    ap_attr :outbox, URI
 
     # SHOULD have:
-    ap_attr :following, :followers
+    ap_attr :following
+    ap_attr :followers
     
     # MAY have:
-    ap_attr :liked, :streams, :preferredUsername,
-      :endpoints
+    ap_attr :liked
+    ap_attr :streams
+    ap_attr :preferredUsername
+    ap_attr :endpoints
 
 
     # Per https://docs-p.joinmastodon.org/spec/activitypub/#extensions
     # These are extensions used by Mastodon for Actor types
-    ap_attr :publicKey, :featured, :featuredTags,
-      :discoverable, :suspended
+    ap_attr :publicKey
+    ap_attr :featured
+    ap_attr :featuredTags
+    ap_attr :discoverable
+    ap_attr :suspended
   end
 
   # FIXME: Add "toot:Emoji
@@ -173,7 +221,9 @@ module ActivityPub
 
     # Mastodon extension per
     # https://docs-p.joinmastodon.org/spec/activitypub/#extensions
-    ap_attr :likes, :bookmarks, :manuallyApprovesFollowers
+    ap_attr :likes
+    ap_attr :bookmarks
+    ap_attr :manuallyApprovesFollowers
   end
 
   class Service < Actor
@@ -183,7 +233,9 @@ module ActivityPub
   # ## Object types
 
   class Relationship < Object
-    ap_attr :subject, :object, :relationship
+    ap_attr :subject
+    ap_attr :object
+    ap_attr :relationship
   end
 
   class Article < Object
@@ -199,7 +251,8 @@ module ActivityPub
     
     # Mastodon extension per
     # https://docs-p.joinmastodon.org/spec/activitypub/#extensions
-    ap_attr :focalPoint, :blurhash
+    ap_attr :focalPoint
+    ap_attr :blurhash
   end
 
   class Video < Document
@@ -224,7 +277,8 @@ module ActivityPub
   end
 
   class Tombstone < Object
-    ap_attr :formerType, :deleted
+    ap_attr :formerType
+    ap_attr :deleted
   end
 
   # Mastodon extensions

@@ -30,10 +30,11 @@ puts
 
 ob = href.get
 PP.pp(ob)
+puts ob.to_json
 puts
 puts "Enter to continue"
 gets
 
 puts "Trying to retrieve outbox"
-ob = ActivityPub::URI.new(ob.outbox).get
+ob = ob.outbox.get
 PP.pp(ob)

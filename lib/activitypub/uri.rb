@@ -9,7 +9,7 @@ module ActivityPub
     end
 
     def to_s = @href
-    def to_json = @href
+    def to_json(...) = @href
 
     def get
       response = Faraday.get(self.to_s, {}, {"Accept": "application/activity+json"})
