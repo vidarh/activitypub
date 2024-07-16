@@ -71,6 +71,9 @@ module ActivityPub
     ap_attr :first, URI
     ap_attr :last, URI
     ap_attr :items
+
+    def each(...) = Array(items).each(...)
+    def map(...) = Array(items).map(...)
   end
 
   class OrderedCollection < Collection
@@ -81,6 +84,9 @@ module ActivityPub
     #
     # FIXME: Review/consider whether to marge orderedItems/items internally.
     ap_attr :orderedItems
+
+    def each(...) = Array(orderedItems).each(...)
+    def map(...) = Array(orderedItems).map(...)
   end
 
   class CollectionPage < Collection
