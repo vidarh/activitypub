@@ -7,8 +7,13 @@ require_relative 'uri'
 module ActivityPub
 
   class Link < Base
-    ap_attr :href
+    ap_attr :href, URI
+
+    # We don't mark "rel" as a URI as it's effectively
+    # used as an identifier for comparison rather than to
+    # dereference
     ap_attr :rel
+
     ap_attr :mediaType
     ap_attr :name
     ap_attr :hreflang
@@ -29,7 +34,7 @@ module ActivityPub
     ap_attr :generator
     ap_attr :icon
     ap_attr :image
-    ap_attr :inReplyTo
+    ap_attr :inReplyTo, URI
     ap_attr :location
     ap_attr :preview
     ap_attr :published
@@ -38,7 +43,7 @@ module ActivityPub
     ap_attr :summary
     ap_attr :tag
     ap_attr :updated
-    ap_attr :url
+    ap_attr :url, URI
     ap_attr :to
     ap_attr :bto
     ap_attr :cc
@@ -63,8 +68,8 @@ module ActivityPub
   class Collection < Object
     ap_attr :totalItems
     ap_attr :current
-    ap_attr :first
-    ap_attr :last
+    ap_attr :first, URI
+    ap_attr :last, URI
     ap_attr :items
   end
 
@@ -79,12 +84,18 @@ module ActivityPub
   end
 
   class CollectionPage < Collection
-    ap_attr :partOf
-    ap_attr :next
-    ap_attr :prev
+    ap_attr :partOf, URI
+    ap_attr :next, URI
+    ap_attr :prev, URI
   end
-  
-  class OrderedCollectionPage < CollectionPage
+
+  # FIXME: OrderedCollectionPage inherits both CollectionPage and
+  # OrderedCollection.
+  #
+  class OrderedCollectionPage < OrderedCollection
+    ap_attr :partOf, URI
+    ap_attr :next, URI
+    ap_attr :prev, URI
     ap_attr :startIndex
   end
 

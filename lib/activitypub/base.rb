@@ -22,6 +22,9 @@ module ActivityPub
 
     ob = klass ? klass.new : nil
 
+    # FIXME: Useful for debug. Add flag to allow enabling.
+    # ob.instance_variable_set("@_raw",h)
+    
     if ob
       context = h.dig("@context")
       ob.instance_variable_set("@_context", context) if context
@@ -38,7 +41,7 @@ module ActivityPub
         end
 
         if t = klass.ap_types[attr]
-          v = t.new(v)
+          v = t.new(v) if v
         end
         ob.instance_variable_set("@#{attr}", v) if !v.nil?
       end

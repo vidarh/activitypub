@@ -49,6 +49,10 @@ RSpec.describe ActivityPub::Person do
       expect(subject.tag).to include(a_kind_of(ActivityPub::Hashtag)).twice
     end
 
+    it "has URI objects in the href property of the Hashtag's" do
+      expect(subject.tag.first.href).to be_kind_of(ActivityPub::URI)
+    end
+
     it "has two PropertyValue objects in the 'attachment' array" do
       expect(subject.attachment).to include(a_kind_of(ActivityPub::PropertyValue)).twice
     end

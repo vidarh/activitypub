@@ -30,7 +30,7 @@ puts
 
 ob = href.get
 PP.pp(ob)
-puts ob.to_json
+#puts ob.to_json
 puts
 puts "Enter to continue"
 gets
@@ -38,3 +38,17 @@ gets
 puts "Trying to retrieve outbox"
 ob = ob.outbox.get
 PP.pp(ob)
+puts
+puts "Enter to continue"
+gets
+
+puts
+puts "PAGE: #{ob.first}"
+ob = ob.first.get
+PP.pp(ob)
+
+# For now, this will let you iterate through the collection.
+# while ob && ob.orderedItems.length > 0
+#   PP.pp ob.id
+#   ob = ob.next&.get
+# end
