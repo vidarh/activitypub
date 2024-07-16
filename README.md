@@ -1,7 +1,12 @@
 # ActivityPub
 
-*Very* early start on a set of classes to serialize/deserialize
-ActivityPub/ActivityStream objects.
+A Ruby gem to make it easy to retrieve and work with ActivityPub/
+ActivityStreams objects, as used in Mastodon, Lemmy, Pixelfed and
+similar.
+
+CAUTION: This is early days and the API is likely to change quickly.
+If you want to start using this, please follow the project and/or let
+me know.
 
 ## Goals
 
@@ -28,7 +33,10 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: Write usage instructions here.
+
+For now your best bet is to look at the examples/ dir and the unit
+tests.
 
 ## Development
 
