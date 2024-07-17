@@ -25,7 +25,7 @@ module ActivityPub
   class Object < Base
     ap_attr :id
     ap_attr :attachment
-    ap_attr :attributedTo
+    ap_attr :attributedTo, URI
     ap_attr :audience
     ap_attr :content
     ap_attr :context
