@@ -41,7 +41,7 @@ module ActivityPub
         end
 
         if t = klass.ap_types[attr]
-          v = t.new(v) if v
+          v = t.new(v) if v && !v.kind_of?(ActivityPub::Base)
         end
         ob.instance_variable_set("@#{attr}", v) if !v.nil?
       end
