@@ -238,8 +238,8 @@ module ActivityPub
 
     # Mastodon extension per
     # https://docs-p.joinmastodon.org/spec/activitypub/#extensions
-    ap_attr :likes
-    ap_attr :bookmarks
+    ap_attr :likes, URI
+    ap_attr :bookmarks, URI
     ap_attr :manuallyApprovesFollowers
   end
 

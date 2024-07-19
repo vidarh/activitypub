@@ -22,15 +22,19 @@ RSpec.describe ActivityPub::Person do
     it do
       is_expected.to have_attributes(
         :id => "https://mastodon.social/users/vidarh",
-        :url => "https://mastodon.social/@vidarh",
+        :url => a_kind_of(ActivityPub::URI),
         :preferredUsername => "vidarh",
         :outbox => a_kind_of(ActivityPub::URI),
-        :likes => "likes.json",
-        :bookmarks => "bookmarks.json",
+        :likes => a_kind_of(ActivityPub::URI),
+        :bookmarks => a_kind_of(ActivityPub::URI),
         :discoverable => true,
         :manuallyApprovesFollowers => false,
-        :summary => "my summary",
+        :summary => "my summary"
+      )
+    end
 
+    it do
+      is_expected.to have_attributes(
         # Note: Currently, the types returned will reflect the input
         # document. We do NOT validate the types of these, and so
         # this reflects this fixture, which is typical for a Mastodon
@@ -56,6 +60,19 @@ RSpec.describe ActivityPub::Person do
     it "has two PropertyValue objects in the 'attachment' array" do
       expect(subject.attachment).to include(a_kind_of(ActivityPub::PropertyValue)).twice
     end
+  end
+
+  context "when _resolver is set to a UnsafeResolver instance" do
+    subject {
+      ActivityPub.from_json(
+        File.read("spec/fixtures/actor.json"),
+        resolver: ActivityPub::UnsafeResolver.new("spec/fixtures")
+      )
+    }
+
+    it {
+      expect(subject.likes.get).to be_kind_of(ActivityPub::Collection)
+    }
   end
   
 end

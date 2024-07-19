@@ -6,11 +6,11 @@ module ActivityPub
   class Error < StandardError; end
 
   
-  def self.from_json(json)
-    from_hash(JSON.parse(json))
+  def self.from_json(json, resolver: nil)
+    from_hash(JSON.parse(json), resolver:)
   end
 
-  def self.from_hash(h)
+  def self.from_hash(h, resolver: nil)
     type = h&.dig("type")
 
     raise Error, "'type' attribute is required" if !type
@@ -21,6 +21,7 @@ module ActivityPub
     klass = ActivityPub.const_get(type)
 
     ob = klass ? klass.new : nil
+    ob._resolver = resolver
 
     # FIXME: Useful for debug. Add flag to allow enabling.
     # ob.instance_variable_set("@_raw",h)
@@ -42,6 +43,7 @@ module ActivityPub
 
         if t = klass.ap_types[attr]
           v = t.new(v) if v && !v.kind_of?(ActivityPub::Base)
+          v._resolver = ob._resolver if v
         end
         ob.instance_variable_set("@#{attr}", v) if !v.nil?
       end
@@ -56,6 +58,8 @@ module ActivityPub
   class Base
     def _context = @_context || "https://www.w3.org/ns/activitystreams"
     def _type = self.class.name.split("::").last
+
+    attr_accessor :_resolver
 
 
     # FIXME: Allow specifying a type (e.g. URI)

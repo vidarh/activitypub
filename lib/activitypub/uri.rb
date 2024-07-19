@@ -1,23 +1,20 @@
 
-require 'uri'
-require 'faraday'
+require_relative 'resolvers'
 
 module ActivityPub
   class URI
-    def initialize(href)
+    attr_accessor :_resolver
+
+    def initialize(href, resolver: nil)
       @href = href
+      @_resolver = resolver || WebResolver
     end
 
     def to_s = @href
     def to_json(...) = @href
 
     def get
-      response = Faraday.get(self.to_s, {}, {"Accept": "application/activity+json"})
-      if response.status == 200
-        ActivityPub.from_json(response.body)
-      else
-        response
-      end
+      @_resolver&.call(self.to_s)
     end
   end
 end
