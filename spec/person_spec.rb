@@ -70,9 +70,18 @@ RSpec.describe ActivityPub::Person do
       )
     }
 
-    it {
+    it "will resolve a relative file path" do
       expect(subject.likes.get).to be_kind_of(ActivityPub::Collection)
-    }
+    end
+
+    it "will not allow reading arbitrary files" do
+      expect {
+        ActivityPub.from_json(
+          %{ { "type": "Person", "likes": "/etc/passwd" } },
+          resolver: ActivityPub::UnsafeResolver.new("spec/fixtures")
+        ).likes.get
+      }.to raise_exception(RuntimeError, "Illegal path")
+    end
   end
   
 end

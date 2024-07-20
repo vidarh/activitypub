@@ -31,11 +31,12 @@ module ActivityPub
   #
   class UnsafeResolver
     def initialize(base)
-      @base = base
+      @base = File.expand_path(base)
     end
     
     def call(path)
-      path = File.expand_path(File.join(@base, path))
+      path = File.expand_path(path,@base)
+      raise "Illegal path" if path[0...@base.length] != @base
       if File.exist?(path)
         data = File.read(path)
         return ActivityPub.from_json(data)
