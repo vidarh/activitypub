@@ -1,6 +1,7 @@
 
 require 'uri'
 require 'faraday'
+require 'socket'
 
 # Classes to resolve URI's into objects.
 
@@ -9,6 +10,12 @@ module ActivityPub
 
   class WebResolver
     def self.call(path)
+
+      uri = URI(path)
+      if uri.host == "localhost" || ((IPSocket.getaddress(uri.host) =~ /127.*/) == 0)
+        raise "Local access denied"
+      end
+      
       response = Faraday.get(path, {}, {"Accept": "application/activity+json"})
       if response.status == 200
         ActivityPub.from_json(response.body)

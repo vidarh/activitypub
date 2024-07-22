@@ -62,6 +62,17 @@ RSpec.describe ActivityPub::Person do
     end
   end
 
+  context "when _resolver is set to a WebResolver instance (default)" do
+    it "will by default not allow access to localhost" do
+      expect {
+        ActivityPub.from_json(
+          %{ { "type": "Person", "likes": "http://localhost/foo" } },
+          resolver: ActivityPub::WebResolver
+        ).likes.get
+      }.to raise_exception(RuntimeError, "Local access denied")
+    end
+  end
+
   context "when _resolver is set to a UnsafeResolver instance" do
     subject {
       ActivityPub.from_json(
