@@ -71,6 +71,25 @@ RSpec.describe ActivityPub::Person do
         ).likes.get
       }.to raise_exception(RuntimeError, "Local access denied")
     end
+
+    it "will by default not allow access to 10.0.0.0/8" do
+      expect {
+        ActivityPub.from_json(
+          %{ { "type": "Person", "likes": "http://10.0.0.1/foo" } },
+          resolver: ActivityPub::WebResolver
+        ).likes.get
+      }.to raise_exception(RuntimeError, "Local access denied")
+    end
+
+    it "will by default not allow access to 169.254.0.0/16" do
+      expect {
+        ActivityPub.from_json(
+          %{ { "type": "Person", "likes": "http://169.254.1.1/foo" } },
+          resolver: ActivityPub::WebResolver
+        ).likes.get
+      }.to raise_exception(RuntimeError, "Local access denied")
+    end
+    
   end
 
   context "when _resolver is set to a UnsafeResolver instance" do

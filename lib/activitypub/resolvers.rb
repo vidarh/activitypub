@@ -2,6 +2,7 @@
 require 'uri'
 require 'faraday'
 require 'socket'
+require 'ipaddr'
 
 # Classes to resolve URI's into objects.
 
@@ -12,7 +13,8 @@ module ActivityPub
     def self.call(path)
 
       uri = URI(path)
-      if uri.host == "localhost" || ((IPSocket.getaddress(uri.host) =~ /127.*/) == 0)
+      addr = IPAddr.new(IPSocket.getaddress(uri.host))
+      if addr.loopback? || addr.private? || addr.link_local?
         raise "Local access denied"
       end
       
