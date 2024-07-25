@@ -36,6 +36,7 @@ puts "Enter to continue"
 gets
 
 puts "Trying to retrieve outbox"
+p ob.outbox
 ob = ob.outbox.get
 PP.pp(ob)
 puts
@@ -48,6 +49,8 @@ ob = ob.first.get
 PP.pp(ob)
 
 # For now, this will let you iterate through the collection.
+
+
 # while ob && ob.orderedItems.length > 0
 #   PP.pp ob.id
 #   ob = ob.next&.get
