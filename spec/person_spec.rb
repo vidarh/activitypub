@@ -104,10 +104,19 @@ RSpec.describe ActivityPub::Person do
       expect(subject.likes.get).to be_kind_of(ActivityPub::Collection)
     end
 
-    it "will not allow reading arbitrary files" do
+    it "will not allow reading absolute paths outside the specified base" do
       expect {
         ActivityPub.from_json(
           %{ { "type": "Person", "likes": "/etc/passwd" } },
+          resolver: ActivityPub::UnsafeResolver.new("spec/fixtures")
+        ).likes.get
+      }.to raise_exception(RuntimeError, "Illegal path")
+    end
+
+    it "will not allow using '..' to escape the base path" do
+      expect {
+        ActivityPub.from_json(
+          %{ { "type": "Person", "likes": "../../README.md" } },
           resolver: ActivityPub::UnsafeResolver.new("spec/fixtures")
         ).likes.get
       }.to raise_exception(RuntimeError, "Illegal path")
