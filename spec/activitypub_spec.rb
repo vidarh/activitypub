@@ -26,7 +26,11 @@ RSpec.describe ActivityPub do
     end
 
     it "should return a generic ActivityPub::Object if the object contains an unknown type and 'allow_uknown: true' is passed" do
-      skip
+      expect(ActivityPub.from_json(%{ { "type": "FooBar" } }, allow_unknown: true).class).to eq ActivityPub::Object
+    end
+
+    it "should return an object which will return a JSON hash from #_raw" do
+      expect(ActivityPub.from_json(%{ { "type": "Object", "foo": "bar" } })._raw["foo"]).to eq "bar"
     end
   end
 end

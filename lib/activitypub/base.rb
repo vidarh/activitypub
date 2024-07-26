@@ -6,22 +6,27 @@ module ActivityPub
   class Error < StandardError; end
 
   
-  def self.from_json(json, resolver: nil)
-    from_hash(JSON.parse(json), resolver:)
+  def self.from_json(json, resolver: nil, allow_unknown: false)
+    from_hash(JSON.parse(json), resolver:, allow_unknown:)
   end
 
-  def self.from_hash(h, resolver: nil)
+  def self.from_hash(h, resolver: nil, allow_unknown: false)
     type = h&.dig("type")
 
     raise Error, "'type' attribute is required" if !type
     raise NameError, "'type' attribute with '::' is not allowed" if !type.index("::").nil?
 
     # FIXME: May need a way to override/handle custom namespaces.
-    
-    klass = ActivityPub.const_get(type)
+
+    if allow_unknown && !ActivityPub.const_defined?(type)
+      klass = ActivityPub::Object
+    else
+      klass = ActivityPub.const_get(type)
+    end
 
     ob = klass ? klass.new : nil
     ob._resolver = resolver
+    ob._raw = h
 
     # FIXME: Useful for debug. Add flag to allow enabling.
     # ob.instance_variable_set("@_raw",h)
@@ -60,6 +65,7 @@ module ActivityPub
     def _type = self.class.name.split("::").last
 
     attr_accessor :_resolver
+    attr_accessor :_raw
 
 
     # FIXME: Allow specifying a type (e.g. URI)
